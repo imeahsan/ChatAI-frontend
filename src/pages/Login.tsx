@@ -13,22 +13,22 @@ const Login = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const email = formData.get("email");
-    const password = formData.get("password");
+    const email = formData.get("email")?.toString() || "";
+    const password = formData.get("password")?.toString() || "";
     try {
       toast.loading("Signing In", { id: "login" });
       await auth?.login(email, password);
       toast.success("Signed In Successfully", { id: "login" });
-    } catch (error) {
+    } catch (error: any) {
       alert(error.message);
       toast.error("Signing In", { id: "login" });
     }
   };
-   useEffect(() => {
-     if (auth?.user) {
-       navigate("/chat");
-     }
-   }, [auth]);
+  useEffect(() => {
+    if (auth?.user) {
+      navigate("/chat");
+    }
+  }, [auth]);
   return (
     <Box width={"100%"} height={"100%"} display={"flex"} flex={1}>
       <Box

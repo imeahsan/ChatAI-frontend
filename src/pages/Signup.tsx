@@ -13,14 +13,15 @@ const Signup = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const name = formData.get("name");
-    const email = formData.get("email");
-    const password = formData.get("password");
+    const name: string | undefined = formData.get("name")?.toString() || "";
+    const email: string | undefined = formData.get("email")?.toString() || "";
+    const password: string | undefined =
+      formData.get("password")?.toString() || "";
     try {
       toast.loading("Signing up", { id: "Signup" });
       await auth?.signup(name, email, password);
       toast.success("Signed Up Successfully", { id: "Signup" });
-    } catch (error) {
+    } catch (error: any) {
       alert(error.message);
       toast.error("Signing Up", { id: "Signup" });
     }

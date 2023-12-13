@@ -11,7 +11,7 @@ export const loginUser = async (email: string, password: string) => {
 export const signupUser = async (
   name: string | null,
   email: string | null,
-  password: string
+  password: string | null
 ) => {
   const res = await axios.post("/user/signup", { name, email, password });
   if (res.status !== 201) {

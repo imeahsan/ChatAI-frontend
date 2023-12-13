@@ -35,3 +35,14 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   /* -webkit-box-shadow: 0 0 0 30px  #05101c inset !important; */
 }
+.rotate {
+  animation: rotation 8s infinite linear;
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
